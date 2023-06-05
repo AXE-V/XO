@@ -1,0 +1,776 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    display: grid;
+    min-height: 100vh;
+    background: #F6F6F6;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.Win_window {
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    height: 429.36px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(44, 57, 121, 0.09);
+    border-radius: 16px;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.win_box {
+    display: grid;
+    grid-template: [start] "winLogo" 1fr
+                    [row2] "winName" 0.2fr
+                    [row3] "buttons" 1fr
+                    [end] / 1fr;
+    justify-content: center;
+    align-items: center;
+}
+.win_logo {
+    position: relative;
+    top: 10px;
+    margin: 0 auto 0 auto;
+    width: 132px;
+    height: 165.36px;
+    grid-area: winLogo;
+}
+.win_logo img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.win_name {  
+    padding: 33px 0 0 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;  
+    color: #373745;
+    text-align: center;
+    grid-area: winName;
+}
+.buttons {
+    display: grid;
+    gap: 10px;
+    grid-area: buttons;
+}
+.newGameBth {
+    width: 352px;
+    height: 48px;
+    background: #60C2AA;
+    border-radius: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 12px 0 0 0;
+    text-align: center;
+    letter-spacing: 0.24px;
+    color: #FFFFFF;
+}
+.newGameBth:hover {
+    background: rgba(59, 161, 137, 1);
+}
+.menuBth {
+    width: 352px;
+    height: 48px;
+    background: #F7F7F7;
+    border-radius: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 12px 0 0 0;
+    text-align: center;
+    letter-spacing: 0.24px;
+    color: #373745;
+}
+.menuBth:hover {
+    background: rgba(220, 220, 223, 1);
+}
+.authorization {
+    display: grid;
+    background: #fff;
+    min-width: 400px;
+    min-height: 464px;
+    max-width: auto;
+    max-height: auto;
+    border-radius: 16px;
+    box-shadow: 0px 4px 20px rgba(44, 57, 121, 0.09);
+}
+.content {
+    display: grid;
+    margin: 20px 20px 40px 20px;
+    grid-template-columns: 1fr;
+    gap: 8px;
+    justify-items: center;
+}
+.logo {
+    position: relative;
+    padding: 0;
+    margin: 20px auto 0 auto;
+    left: 0%;
+    width: 132px;
+    height: 132px;
+}
+.logo img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.enter_text {
+    margin: 10px 0 5px 0;
+    height: 36px;
+    align-items: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    align-items: center;
+    text-align: center;
+    color: #373745;
+}
+.enter_bth {
+    background: rgba(96, 194, 170, 0.3);
+    border-radius: 12px;
+    padding: 12px 0;
+    border: 0;
+    height: 48px;
+    color: #fff;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    width: 100%;
+    margin: 10px 0 0 0;
+}
+.inputs {
+    width: 100%;
+    display: grid;
+    grid-template: 1fr 1fr / 1fr;
+}
+.invalid_value {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.25px;
+    color: #E93E3E;
+    margin: 0;
+}
+
+/* игоровое поле */
+.wrapper {
+    display: none;
+    grid-template: 64px 1fr / 1fr;
+}
+.wrapper.blurred {
+    filter: blur(3px);
+}
+.game_logo {
+    display: grid;
+    align-items: center;
+    justify-content: start;
+    margin: 0 0 0 20px;
+    column-gap: 2px;
+    grid-auto-flow: column;
+    position: relative;
+}
+.header {
+    display: grid;
+    grid-template: 1fr / 1fr minmax(auto, 500px) minmax(auto, 840px) minmax(auto, 500px) 1fr;
+    background: #fff;
+    border-radius: 0 0 16px 16px;
+    box-shadow: 0px 2px 6px rgba(44, 57, 121, 0.1);
+}
+.header_buttons {
+    grid-column: 3 / 4;
+}
+.header_links {
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-evenly; 
+    align-items: center; 
+}
+.header_bth {
+    list-style-type: none;
+}
+.play {
+    padding: 10px 0px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    color: #fff;
+    cursor: default;
+    user-select: none;
+    margin: 15px 50px 0 50px;
+    border-radius: 12px;
+    background: rgb(238, 146, 180);
+    border: none;
+    box-shadow: 0px 4px 8px rgba(44, 57, 121, 0.09);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+.play:hover {
+    background: rgb(227, 139, 172);
+}
+.tab-item {
+    padding: 4px 12px;
+    border-radius: 200px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-decoration: none;
+    color: #373745;
+    cursor: default;
+    user-select: none;
+}
+.exit {
+    cursor: default;
+}
+.exit_bth {
+    grid-column: 4 / 5;
+    display: grid;
+    justify-items: end;
+    align-items: center;
+    margin: 0 50px 0 0;
+}
+.svg_exit path {
+    fill: rgba(55, 55, 69, 1)
+}
+.exit:hover path {
+    fill: rgba(59, 161, 137, 1);
+}
+.content-item {
+    padding: 55px 0 0 0;
+    width: 100%;
+    display: none;
+    row-gap: 40px;
+}
+.content-item.play_window.is-active {
+    display: grid;
+    grid-template: 1fr / 1fr minmax(auto, 500px) minmax(auto, 840px) minmax(auto, 500px) 1fr;
+    justify-items: center;
+}
+.header_bth .is-active {
+    background: #60C2AA;
+    color: #fff;
+}
+.header_bth .is-active:hover {
+    /* background: #429E89; */
+    background: #60C2AA;
+}
+.tab-item:hover {
+    background: #EDEDED;
+}
+.players_block {
+    align-items: center;
+    height: 224px;
+    width: 500px;
+    display: grid;
+    grid-template: 40px 1fr / 1fr;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(44, 57, 121, 0.09);
+    border-radius: 20px;
+    grid-column: 2 / 3;
+    padding: 20px;
+    row-gap: 20px;
+}
+.current_players {
+    display: grid;
+    grid-template: 1fr 1fr / 1fr;
+    row-gap: 20px;
+}
+.player {
+    display: grid;
+    align-items: center;
+    grid-auto-flow: column;
+    grid-template: 1fr / 50px 1fr;
+}
+.players_info {
+    display: grid;
+    grid-template: repeat(2, 1fr) / 1fr;
+    row-gap: 5px;
+}
+.players_signal {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    /* border: 2px solid #ED213A; */
+    border-radius: 50%;
+}
+.players_signal {
+    border-radius: 50%;
+    box-shadow: 1.5px 1.5px 20px rgba(48, 48, 48, 0.01),
+                -1.5px -1.5px 20px rgba(235, 235, 235, 0.01),
+                inset 0.5px 0.5px 2px rgba(48, 48, 48, 0.2),
+                inset -0.5px -0.5px 2px rgba(235, 235, 235, 0.2);
+    background: #fff;
+}
+.players_signal::before {
+    position: absolute;
+    content: '';
+    inset: 5px;
+    background: #ED213A;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #ED213A,
+                0 0 8px #ED213A,
+                0 0 10px #ED213A;
+}
+.players_signal.ready::before  {
+    position: absolute;
+    content: '';
+    inset: 5px;
+    background: #64f38c;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #64f38c,
+                0 0 8px #64f38c,
+                0 0 10px #64f38c;
+}
+.players_fio {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.15px;
+    color: #373745;
+}
+.players_state {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #898993;
+}
+.field {
+    grid-column: 3 / 4;
+    display: grid;
+    grid-template: 100px 1fr / 1fr;
+    align-items: center;
+    justify-items: center;
+    row-gap: 10px;
+}
+.game_grid {
+    display: grid;
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    gap: 5px;
+}
+.cell {
+    position: relative;
+    background: #fff;
+    border-radius: 12px;
+    height: 197px;
+    width: 197px;
+    box-shadow: 0px 4px 20px rgba(44, 57, 121, 0.09);
+}
+.cell.o_filled {
+    background: rgba(243, 187, 208, 1);
+}
+.cell.x_filled {
+    background: rgba(207, 237, 230, 1);
+}
+.current_move {
+    display: none;
+    grid-row: 2 / 3;
+    grid-column: 3 / 4;
+    grid-template: 1fr / 1fr 30px 3fr;
+    padding: 12px;
+    column-gap: 10px;
+    width: 400px;
+    height: 48px;
+    background: #373745;
+    box-shadow: 0px 4px 20px rgba(44, 57, 121, 0.09);
+    border-radius: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    align-content: center;
+    align-items: center;
+    letter-spacing: 0.15px;
+    color: #FFFFFF;
+}
+.move_part1 {
+    display: grid;
+    justify-self: end;
+}
+.move_part2 {
+    /* margin-bottom: 15px; */
+}
+.move_part3 {
+    display: grid;
+    justify-self: start;
+}
+.cell img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    object-fit: cover;
+}
+.timer_block {
+    background: #EDEDED;
+    padding: 24px;
+    border-radius: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 34px;
+    line-height: 40px;
+    color: #373745;
+}
+.chat {
+    grid-column: 4 /5;
+    display: grid;
+    grid-template: 1fr 48px / 1fr;
+    align-items: end;
+    /* background: yellow; */
+}
+.control_zone {
+    position: relative;
+}
+.send_message {
+    border: 0;
+    width: 48px;
+    height: 48px;
+    background: #60C2AA;
+    border-radius: 12px;
+}
+.send_message:hover {
+    background: rgba(59, 161, 137, 1);
+}
+.input_full {
+    position: relative;
+    display: grid;
+    grid-template: 1fr;
+}
+.input_full input {
+    width: 100%;
+    
+}
+.input_full input,
+.input_msg input {
+    height: 48px;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #DCDCDF;
+    border-radius: 12px;
+    outline: none;
+}
+.input_msg {
+    position: relative;
+}
+.input_msg input {
+    width: 352px;   
+}
+.txt_au, text {
+    position: absolute;
+    left: 0;
+    top: -5px;   
+    line-height: 24px;
+    pointer-events: none;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #B1B1B7;
+}
+text {
+    padding: 13px;
+}
+.txt_au {
+    padding: 19px;
+    letter-spacing: 0.24px;
+}
+.control_zone input:valid ~ text,
+.control_zone input:focus ~ text,
+.input_full input:valid ~ text,
+.input_full input:focus ~ text
+{
+    display: none;
+}
+.control_zone input:valid,
+.control_zone input:focus,
+.input_full input:valid,
+.input_full input:focus
+{
+    border: 1px solid #787878;
+}
+.control_zone {
+    display: grid;
+    grid-template: 1fr / 1fr minmax(20px, auto);
+    column-gap: 15px;
+}
+h2 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 150%;
+    color: #373745;
+}
+.cell {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.message_area {
+    display: grid;
+    grid-template: repeat(2 ,1fr);
+}
+.x_player_msg, .o_player_msg {
+    display: grid;
+    grid-template: 30px 1fr / 1fr;
+    width: 352px;
+    padding: 12px;
+    height: 100px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 6px rgba(44, 57, 121, 0.1);
+    margin-bottom: 10px;
+}
+.x_player_msg { 
+    border-radius: 16px 16px 16px 0px;
+}
+.o_player_msg {
+    border-radius: 16px 16px 0px 16px;
+    justify-self: end;
+}
+.o_player_msg .player_name_msg {
+    color: #E38BAC;
+}
+.header_msg {
+    display: grid;
+    grid-template: 1fr / 1fr 37px;
+}
+.player_name_msg {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.25px;
+    color: #60C2AA;
+}
+.time_msg {
+    letter-spacing: 0.25px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #898993;
+}
+.info_msg {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.24px;
+    color: #373745;
+}
+
+
+/* Рейтинг */
+
+.content-item.rating_window.is-active {
+    display: grid;
+    grid-template: 1fr / 1fr minmax(auto, 500px) minmax(auto, 1026px) minmax(auto, 500px) 1fr;
+    justify-items: center;
+}
+.rating_box {
+    grid-column: 3;
+    justify-content: center;
+    padding: 32px 0px 0 35px;
+    width: 1026px;
+    height: 772px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(44, 57, 121, 0.09);
+    border-radius: 40px;
+}
+.td_fio {
+    width: 424px;
+}
+.td_wins {
+    color: rgba(105, 184, 73, 1);
+}
+.td_fio, .td_game, .td_wins, .td_loses, .td_percent, 
+.td_fio_cap, .td_game_cap, .td_wins_cap, .td_loses_cap, .td_percent_cap {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.24px;
+    color: #373745;
+}
+.td_wins {
+    color: rgba(105, 184, 73, 1);
+}
+.td_loses {
+    color: rgba(233, 62, 62, 1);
+}
+.td_fio_cap, .td_game_cap, .td_wins_cap, .td_loses_cap, .td_percent_cap {
+    font-weight: 550;
+}
+.players_table {
+    width: 955px;
+    border-collapse: collapse;
+}
+.players_table th{
+    text-align: left;
+    padding: 35px 0px 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+.players_table td{
+    border-bottom: 1px solid #ddd;
+    padding: 10px 50px 10px 0;
+}
+
+
+/* Активные игроки */
+
+.content-item.activePlayers_window.is-active {
+    display: grid;
+    grid-template: 1fr / 1fr minmax(auto, 500px) minmax(auto, 856px) minmax(auto, 500px) 1fr;
+    justify-items: center;
+}
+.activePlayers_box {
+    grid-column: 3;
+    padding: 32px;
+    width: 781px;
+    height: 856;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 20px rgba(44, 57, 121, 0.09);
+    border-radius: 40px;
+}
+.activePlayers_header {
+    display: grid;
+    grid-template: 1fr / 2.3fr 1fr;
+}
+.bth_box {
+    display: grid;
+    grid-template: 1fr / 1fr 0.3fr;
+    justify-content: center;
+    align-items: center;
+}
+.bth_box .txt {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.24px;
+    color: #373745;
+}
+.players_table2 {
+    width: 100%;
+}
+.players_table2 tr {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 0;
+}
+.players_table2 .td_fio {
+    width: 360px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.24px;
+    color: #373745;
+}
+.players_table2 .td_status {
+    width: 100px;
+    background: #A8D37F;
+    border-radius: 6px;  
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    letter-spacing: 0.24px; 
+    color: #FFFFFF;
+    text-align: center;
+    padding: 8px 0;
+}
+.players_table2 .td_call {
+    display: flex;
+    position: relative;
+    margin: 0 0 0 75px;
+    justify-content: center;
+    left: 0px;
+    align-items: center;
+    width: 161px;
+    height: 48px;
+    background: #60C2AA;
+    border-radius: 12px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.24px;
+    color: #FFFFFF;
+}
+.players_table2 .td_call:hover {
+    background: rgba(59, 161, 137, 1);
+}
+input[type="checkbox"]
+{
+    position: relative;
+    width: 33px;
+    height: 14px;
+    -webkit-appearance: none;
+    background: rgba(220, 220, 223, 1);
+    border-radius: 20px;
+    outline: none;
+}
+input[type="checkbox"]:before
+{
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    top: -4px;
+    left: -6px;
+    border: 1.3px solid rgba(137, 137, 147, 0.2);
+    background: rgba(247, 247, 247, 1);
+    transition: 0.5s;
+    z-index: 1;
+}
+
+input:checked[type="checkbox"]:before
+{
+    left: 17px;
+}
